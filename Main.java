@@ -3,15 +3,25 @@ import java.util.Scanner;
 public class Main {
     
     public static void main(String[] args) {
-    
-        intro();
-        diceAmount();
-        confirm();
+        Intro start = new Intro();
+        DieHandler handler = new DieHandler();
+        Confirmer conf = new Confirmer();
+
+        start.intro();
+        handler.diceAmount();
+        conf.confirm();
+        handler.diceType();
+        conf.confirm();
         System.out.println("post");
     }
 
 
-    public static void intro() {
+    
+}
+
+class Intro {
+
+    public void intro() {
         for (int i = 0; i < 80; i++) {
             System.out.print("-");
 
@@ -23,8 +33,56 @@ public class Main {
         }
         System.out.println(" \n\nIn this sim you have the option of rolling a 6 sided die or a 20 sided die. \n\nBut first how many die would you like to roll?");
     }
+}
 
-    public static void diceAmount() {
+class Confirmer extends Main {
+    public void confirm() {
+        Scanner confirm = new Scanner(System.in);
+
+        System.out.println("Is this correct? 'y'/'n'");
+        String conf = confirm.nextLine();
+
+        switch (conf.toLowerCase()) {
+            case "y":
+                System.out.println("You have confirmed");
+                break;
+            case "n":
+                System.out.println("You have denied \n\nGoodbye!");
+                redo();
+            default:
+                System.out.println("invalid input");
+                confirm(); 
+                break;
+        }
+    }
+
+    public void redo() {
+        Main app = new Main();
+        Scanner confirm = new Scanner(System.in);
+        System.out.println("Would you like to restart program?\n'y'/'n'");
+        String conf = confirm.nextLine();
+
+        switch (conf.toLowerCase()) {
+            case "y":
+                System.out.println("You have confirmed");
+                app.main(null);
+                break;
+            case "n":
+                System.out.println("You have denied \n\nGoodbye!");
+                System.exit(0);
+            default:
+                System.out.println("invalid input");
+                redo(); 
+                break;
+        }
+    }
+}
+
+class DieHandler {
+    int dieAmount;
+    String dieType;
+
+    public void diceAmount() {
         Scanner dieAmount = new Scanner(System.in);
         int amount = dieAmount.nextInt();
     
@@ -32,26 +90,21 @@ public class Main {
         
     }
 
-    public static void confirm() {
-        Scanner confirm = new Scanner(System.in);
+    public void diceType() {
+        System.out.println("Please type in which die you would like to roll: (select only 1 type)\n'd6'\n'd20'");
+        Scanner dieType = new Scanner(System.in);
+        String type = dieType.nextLine();
 
-        System.out.println("Is this correct? 'y'/'n'");
-        String conf = confirm.nextLine();
-
-        switch (conf) {
-            case "y":
-                System.out.println("You have confirmed");
+        switch (type.toLowerCase()) {
+            case "d6":
+                System.out.println("You have selected 'd6'");
                 break;
-            case "Y":
-                System.out.println("You have confirmed");
+            case "d20":
+                System.out.println("You have selected 'd20'");
                 break;
-            case "n":
-                System.out.println("You have denied \n\nGoodbye!");
-            case "N":
-                System.out.println("You have denied \n\nGoodbye!");
             default:
-                System.out.println("invalid input");
-                confirm(); 
+                System.out.println("Invalid selection");
+                diceType();
                 break;
         }
     }

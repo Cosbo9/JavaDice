@@ -12,6 +12,7 @@ public class Main {
         conf.confirm();
         handler.diceType();
         conf.confirm();
+        handler.calculator();
         System.out.println("post");
     }
 
@@ -107,5 +108,24 @@ class DieHandler {
                 diceType();
                 break;
         }
+    }
+
+    public int calculator() {
+        int dieValue = 0;
+
+        System.out.println("You have chosen to roll " + dieAmount + " " + dieType);
+
+        switch (dieType) {
+            case "d6":
+                dieValue = 6;
+                break;
+            case "d20":
+                dieValue = 20;
+                break;
+            default:
+                break;
+        }
+        int total = dieAmount * dieValue;
+        return total;
     }
 }

@@ -1,18 +1,32 @@
 import java.util.Scanner;
 
 public class Main {
+    int amount;
+    String type;
+    DieHandler handler = new DieHandler();
     
+    public Main(){
+        // trying to inizalize the options chosen by user
+        handler.setDieAmount(amount);
+        handler.setDieType(type); 
+    }
     public static void main(String[] args) {
         Intro start = new Intro();
         DieHandler handler = new DieHandler();
         Confirmer conf = new Confirmer();
+        Main setterObj = new Main();
+        String type = setterObj.type;
+        int amount = setterObj.amount;
 
         start.intro();
         handler.diceAmount();
+        handler.setDieAmount(amount);
         conf.confirm();
         handler.diceType();
+        handler.setDieType(type); 
         conf.confirm();
-        handler.calculator();
+        System.out.println("in main " + type + amount);
+        handler.calculator(amount, type);
         System.out.println("post");
     }
 
@@ -21,7 +35,7 @@ public class Main {
 }
 
 class Intro {
-
+    // I think it makes UI prettier
     public void intro() {
         for (int i = 0; i < 80; i++) {
             System.out.print("-");
@@ -36,8 +50,10 @@ class Intro {
     }
 }
 
-class Confirmer extends Main {
+class Confirmer {
+    // confirmation component
     public void confirm() {
+        
         Scanner confirm = new Scanner(System.in);
 
         System.out.println("Is this correct? 'y'/'n'");
@@ -84,6 +100,7 @@ class DieHandler {
     String dieType;
 
     public void diceAmount() {
+        // need to capture this input to send to the calculator component
         Scanner dieAmount = new Scanner(System.in);
         int amount = dieAmount.nextInt();
     
@@ -92,6 +109,7 @@ class DieHandler {
     }
 
     public void diceType() {
+        // need to capture this input to send to the calculator component
         System.out.println("Please type in which die you would like to roll: (select only 1 type)\n'd6'\n'd20'");
         Scanner dieType = new Scanner(System.in);
         String type = dieType.nextLine();
@@ -110,7 +128,7 @@ class DieHandler {
         }
     }
 
-    public int calculator() {
+    public int calculator(int diceAmount, String dieType) {
         int dieValue = 0;
 
         System.out.println("You have chosen to roll " + dieAmount + " " + dieType);
@@ -127,5 +145,20 @@ class DieHandler {
         }
         int total = dieAmount * dieValue;
         return total;
+    }
+
+
+    // getters and setters in the attempt to inizalize the options user selected
+    public int getDieAmount() {
+        return dieAmount;
+    }
+    public int setDieAmount(int amount) {
+        return this.dieAmount = amount;
+    }
+    public String getDieType() {
+        return dieType;
+    }
+    public String setDieType(String type) {
+        return this.dieType = type;
     }
 }

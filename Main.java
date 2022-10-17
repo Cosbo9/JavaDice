@@ -20,9 +20,11 @@ public class Main {
 
         start.intro();
         handler.diceAmount();
+        // experiment trying to see if I can get the variable through this method
         handler.setDieAmount(amount);
         conf.confirm();
         handler.diceType();
+        // experiment trying to see if I can get the variable through this method
         handler.setDieType(type); 
         conf.confirm();
         System.out.println("in main " + type + amount);
@@ -128,6 +130,8 @@ class DieHandler {
         }
     }
 
+    // calculates die rolls, still needs to actually put in the Random functions.
+    // still trying to pass in variable info
     public int calculator(int diceAmount, String dieType) {
         int dieValue = 0;
 

@@ -77,7 +77,7 @@ public class Main {
                 break;
             default:
                 System.out.println("Invalid selection");
-                diceType();
+                // diceType();
                 break;
         }
         // diceType();

@@ -55,13 +55,22 @@ public class Main {
         System.out.println("You have chosen to roll " + amount + " dice");
         // diceAmount();
         conf.confirm();
-        System.out.println("Please type in which die you would like to roll: (select only 1 type)\n'd6'\n'd20'");
+        System.out.println("Please type in which die you would like to roll: (select only 1 type)\n'd4'\n'd6'\n'd10'\n'd12'\n'd20'");
         Scanner dieType = new Scanner(System.in);
         String type = dieType.nextLine();
 
         switch (type.toLowerCase()) {
+            case "d4":
+                System.out.println("You have selected 'd4'");
+                break;
             case "d6":
                 System.out.println("You have selected 'd6'");
+                break;
+            case "d10":
+                System.out.println("You have selected 'd10'");
+                break;
+            case "d12":
+                System.out.println("You have selected 'd12'");
                 break;
             case "d20":
                 System.out.println("You have selected 'd20'");
@@ -96,7 +105,7 @@ class Intro {
             System.out.print("-");
 
         }
-        System.out.println(" \n\nIn this sim you have the option of rolling a 6 sided die or a 20 sided die. \n\nBut first how many die would you like to roll?");
+        System.out.println(" \n\nIn this sim you have the option of rolling a die of your choice. \n\nBut first how many die would you like to roll?");
     }
 }
 
@@ -156,8 +165,17 @@ class DieHandler {
         int dieValue = 0;
 
         switch (dieType) {
+            case "d4":
+                dieValue = 4;
+                break;
             case "d6":
                 dieValue = 6;
+                break;
+            case "d10":
+                dieValue = 10;
+                break;
+            case "d12":
+                dieValue = 12;
                 break;
             case "d20":
                 dieValue = 20;
@@ -168,7 +186,7 @@ class DieHandler {
         // loop that iterates however many times that user chooses
         for (int i = 0; i < diceAmount; i++) {
             // creates and prints random number between 1 and value of chosen die
-            int random = (int) (dieValue * Math.random());
+            int random = (int) (dieValue * Math.random() + 1);
             System.out.println("You rolled: " + random);
         } 
     }

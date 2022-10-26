@@ -61,19 +61,19 @@ public class Main {
 
         switch (type.toLowerCase()) {
             case "d4":
-                System.out.println("You have selected 'd4'");
+                System.out.println("You have selected to roll " + amount + " 'd4'(s)");
                 break;
             case "d6":
-                System.out.println("You have selected 'd6'");
+                System.out.println("You have selected to roll " + amount + " 'd6'(s)");
                 break;
             case "d10":
-                System.out.println("You have selected 'd10'");
+                System.out.println("You have selected to roll " + amount + " 'd10'(s)");
                 break;
             case "d12":
-                System.out.println("You have selected 'd12'");
+                System.out.println("You have selected to roll " + amount + " 'd12'(s)");
                 break;
             case "d20":
-                System.out.println("You have selected 'd20'");
+                System.out.println("You have selected to roll " + amount + " 'd20'(s)");
                 break;
             default:
                 System.out.println("Invalid selection");
@@ -82,7 +82,6 @@ public class Main {
         }
         // diceType();
         conf.confirm();
-        System.out.println("in main " + amount + " " + type);
         handler.calculator(amount, type);
         conf.redo();
     }
@@ -161,7 +160,6 @@ class DieHandler {
     String dieType;
     // calculates die rolls
     public void calculator(Integer diceAmount, String dieType) {
-        System.out.println("You have chosen to roll " + diceAmount + " " + dieType);
         int dieValue = 0;
 
         switch (dieType) {
